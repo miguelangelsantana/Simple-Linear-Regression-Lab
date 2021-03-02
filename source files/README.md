@@ -34,7 +34,7 @@ from matplotlib import style
 style.use('ggplot')
 %matplotlib inline
 
-# Initialize vectors X and Y with given values
+# Initialize arrays X and Y with given values
 # X = Independent Variable
 X = np.array([1,2,3,4,5,6,8,8,9,10], dtype=np.float64)
 # Y = Dependent Variable
@@ -46,28 +46,16 @@ Y = np.array([7,7,8,9,9,10,10,11,11,12], dtype=np.float64)
 
 ```python
 # Scatter plot
-plt.scatter(X,Y)
+
 ```
 
 
-
-
-    <matplotlib.collections.PathCollection at 0x11c6152e8>
-
-
-
-
-![png](index_files/index_3_1.png)
-
-
-
 ```python
-# Your observations about relationship in X and Y 
+# Your observations about the relationship between X and Y 
 
-# X is the independent variable or predictor
-# Y is The dependent variable or target variable
-# The relationship is very linear but not perfectly linear
-# The best fit line should be able to explain this relationship with very low error
+
+
+#
 ```
 
 ## Write a function `calc_slope()`
@@ -80,23 +68,12 @@ Write a function `calc_slope()` that takes in X and Y and calculates the slope u
 # (mean(x) * mean(y) – mean(x*y)) / ( mean (x)^2 – mean( x^2))
 def calc_slope(xs,ys):
     
-    # Use the slope formula above and calculate the slope
-    m = (((np.mean(xs)*np.mean(ys)) - np.mean(xs*ys)) /
-         ((np.mean(xs)**2) - np.mean(xs*xs)))
-    
-    return m
+    pass
 
 calc_slope(X,Y)
 
 # 0.5393518518518512
 ```
-
-
-
-
-    0.5393518518518512
-
-
 
 Great, so we have our slope. Next we calculate the intercept. 
 
@@ -111,25 +88,19 @@ Write a function `best_fit()` that takes in X and Y, calculates the slope and in
 
 
 ```python
+# use the slope function with intercept formula to return calculate slope and intercept from data points
+
 def best_fit(xs,ys):
     
-    # use the slope function with intercept formula to return calculate slope and intercept from data points
-    m = calc_slope(xs,ys)
-    c = np.mean(ys) - m*np.mean(xs)
-    
-    return m, c
+    pass
 
-m, c = best_fit(X,Y)
-m, c
+# Uncomment below to test your function
+
+#m, c = best_fit(X,Y)
+#m, c
+
 # (0.5393518518518512, 6.379629629629633)
 ```
-
-
-
-
-    (0.5393518518518512, 6.379629629629633)
-
-
 
 We now have a working model with `m` and `c` as model parameters. We can create a line for the data points using the calculated slope and intercept:
 
@@ -143,30 +114,18 @@ Write a function `reg_line()` that takes in slope, intercept and X vector and ca
 ```python
 def reg_line (m, c, xs):
     
-    return [(m*x)+c for x in xs]
+    pass
 
-regression_line = reg_line(m,c,X)
+# Uncomment below
+#regression_line = reg_line(m,c,X)
 ```
 
 ## Plot the (x,y) data points and draw the calculated regression line for visual inspection
 
 
 ```python
-plt.scatter(X,Y,color='#003F72', label="Data points")
-plt.plot(X, regression_line, label= "Regression Line")
-plt.legend()
+# Plot data and regression line
 ```
-
-
-
-
-    <matplotlib.legend.Legend at 0x11c6d3748>
-
-
-
-
-![png](index_files/index_12_1.png)
-
 
 So there we have it, our least squares regression line. This is the best fit line and does describe the data pretty well (still not perfect though). 
 
@@ -174,11 +133,10 @@ So there we have it, our least squares regression line. This is the best fit lin
 
 
 ```python
-# y = 6.37 + 0.53x
+# Your answer here
 
-# The line crosses the y-axis at 6.37 (shown in the graph) - intercept
-# The slope of the line is 0.53 - a slope 0 would a horizontal line , and slope = 1 would be a vertical one
-# Our slope creates an angle roughly around 45 degree between the x and y axes. 
+
+
 ```
 
 ## Predicting new data
@@ -194,40 +152,19 @@ Let's try to find a y prediction for a new value of $x = 7$, and plot the new pr
 
 ```python
 x_new = 7
-y_predicted = (m*x_new)+c
+y_predicted = None
 y_predicted
 
 # 10.155092592592592
 ```
 
-
-
-
-    10.155092592592592
-
-
-
 ## Plot the prediction with the rest of the data
 
 
 ```python
+# Plot as above and show the predicted value
 
-plt.scatter(X,Y,color='#000F72',label='data')
-plt.plot(X, regression_line, color='#880000', label='regression line')
-plt.scatter(x_new,y_predicted,color='r',label='Prediction: '+ str(np.round(y_predicted,1)))
-plt.legend(loc=4)
 ```
-
-
-
-
-    <matplotlib.legend.Legend at 0x11c8617b8>
-
-
-
-
-![png](index_files/index_18_1.png)
-
 
 You now know how to create your own models, which is great! Next, you'll find out how to determine the accuracy of your model!
 
